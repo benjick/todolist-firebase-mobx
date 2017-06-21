@@ -1,0 +1,29 @@
+path / {
+  read() { false }
+  write() { false }
+}
+
+path /lists {
+  read() { false }
+  write() { isNew(this) }
+}
+
+path /lists/{list} {
+  read() { true }
+  write() { isNew(this) }
+}
+
+type TodoItem {
+  title: String,
+  done: Boolean
+}
+
+path /lists/{list}/items/{item} is TodoItem {
+  write() {
+    root.lists[list].title != null;
+  }
+}
+
+isNew(value) {
+  prior(value) == null;
+}

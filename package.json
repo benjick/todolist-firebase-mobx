@@ -1,0 +1,25 @@
+{
+  "name": "todo-firebase",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "firebase": "^4.1.2",
+    "mobx": "^3.1.16",
+    "mobx-react": "^4.2.1",
+    "mobx-react-devtools": "^4.2.15",
+    "mobx-state-tree": "^0.7.3",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "route-parser": "^0.0.5"
+  },
+  "devDependencies": {
+    "eslint-config-benjick": "^1.0.1",
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

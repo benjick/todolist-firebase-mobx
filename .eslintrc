@@ -1,0 +1,6 @@
+{
+  "extends": "benjick",
+  "env": {
+    "browser": true
+  }
+}

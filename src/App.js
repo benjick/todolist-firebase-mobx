@@ -1,0 +1,22 @@
+import React, {Component} from 'react';
+import {observer, inject} from 'mobx-react';
+import './App.css';
+
+class App extends Component {
+  render() {
+    const Route = this.props.router.current.component;
+    const {router} = this.props;
+    return (
+      <div className="App">
+        <hr />
+        <button onClick={() => router.go('/')}>Home</button>
+        <button onClick={() => router.go('/todo/123')}>Todo</button>
+        <button onClick={() => router.go('/123')}>404</button>
+        <hr />
+        <Route />
+      </div>
+    );
+  }
+}
+
+export default inject('router')(observer(App));

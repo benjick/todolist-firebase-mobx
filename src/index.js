@@ -7,8 +7,6 @@ import router from './router';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-console.log('stores', stores);
-
 ReactDOM.render(
   <Provider {...stores} router={router}><App /></Provider>,
   document.getElementById('root'),

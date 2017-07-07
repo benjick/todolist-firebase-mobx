@@ -8,28 +8,34 @@ class TodoList extends Component {
   };
 
   componentDidMount() {
-    this.props.todos.load(this.props.router.params.todo);
+    const id = this.props.router.params.todo;
+    this.props.todos.loadList(id);
+    this.props.todos.set(id);
   }
+  //
+  // componentWillUnmount() {
+  //   this.props.todos.unload();
+  // }
 
-  addTodo(e) {
+  addTodo(todos, e) {
     e.preventDefault();
     const {text} = this.state;
     if (text.length > 0) {
-      this.props.todos.add(text);
+      todos.add(text);
       this.setState({text: ''});
     }
   }
 
   render() {
-    const {todos} = this.props;
-    if (todos.loading) {
+    const todos = this.props.todos.current;
+    if (!todos || todos.loading) {
       return <p>loading...</p>;
     }
     return (
       <div>
         <h2>{todos.title}</h2>
         <div>
-          <form onSubmit={e => this.addTodo(e)}>
+          <form onSubmit={e => this.addTodo(todos, e)}>
             <input
               type="text"
               onChange={e => this.setState({text: e.target.value})}

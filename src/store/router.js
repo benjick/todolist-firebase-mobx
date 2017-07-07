@@ -7,8 +7,14 @@ class Router {
       routes: [],
       currentPath: window.location.pathname,
       notFound: null,
-      current: computed(() => this.computeCurrent()),
-      params: computed(() => this.current.params),
+      current: computed(() => {
+        console.log('this.computeCurrent()', this.computeCurrent());
+        return this.computeCurrent();
+      }),
+      params: computed(() => {
+        console.log('this.current.params', this.current.params);
+        return this.current.params;
+      }),
     });
     this.loadRoutes(routes, notFound);
   }
@@ -16,6 +22,10 @@ class Router {
   computeCurrent() {
     const found = this.routes.find(item => item.route.match(this.currentPath));
     if (found) {
+      console.log(
+        'found.route.match(this.currentPath)',
+        found.route.match(this.currentPath),
+      );
       return {
         component: found.component,
         params: found.route.match(this.currentPath),
@@ -33,9 +43,11 @@ class Router {
   }
 
   go(url) {
+    console.log('go');
     if (url !== window.location.pathname) {
       window.history.pushState({}, '', url);
     }
+    console.log('to');
     this.currentPath = url;
   }
 }
